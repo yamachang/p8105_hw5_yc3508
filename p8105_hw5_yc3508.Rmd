@@ -107,8 +107,11 @@ sim_regression = function(n = 30, beta0 = 2, beta1) {
 sim_results = 
   rerun(10000, sim_regression(30, 2, 0)) %>% 
   bind_rows() %>% 
-  select(term, estimate, p.value) %>% 
-  knitr::kable()
+  select(term, estimate, p.value)
+
+head(sim_results) %>% 
+  janitor::clean_names() %>%
+  knitr::kable(digits = 3)
 ```
 
 Use list columns and map for repeating beta1
@@ -146,7 +149,7 @@ Plot_B =
 Plot_B
 ```
 
-The effect and the power of the test are positive correlated as above shown. 
+The effect size (x-axis) and the power of the test (y-axis) are positive correlated as shown above. 
 
 Plot C: Average estimate of β hat: All value vs rejected H0
 
